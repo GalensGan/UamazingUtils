@@ -5,7 +5,7 @@ namespace Uamazing.Utils.Extensions
     /// <summary>
     /// 时间相关的扩展
     /// </summary>
-    public static class Ex_DateTime
+    public static class DateTimeExtensions
     {
         /// <summary>
         /// 获取时间戳

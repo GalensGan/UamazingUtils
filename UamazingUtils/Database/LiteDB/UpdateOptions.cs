@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +46,38 @@ namespace Uamazing.Utils.Database.LiteDB
                 if (IsExclude) return !Contains(value);
                 return Contains(value);
             }
+        }
+
+        /// <summary>
+        /// 忽略默认值，返回有值的字段名
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static UpdateOptions CreateIgnoreDefaultValue<T>(T data)
+        {
+            Type dataType = data.GetType();
+            var properties = dataType.GetProperties();
+            List<string> keys = new List<string>();
+
+            foreach (var prop in properties)
+            {
+                object value = prop.GetValue(data);
+                if (value == null) continue;
+
+                if (value is string && string.IsNullOrEmpty(value.ToString())) continue;
+                if (value is ICollection collection && collection.Count == 0) continue;
+                if (value.GetType().IsEnum)
+                {
+                    var enumValue = (int)value;
+                    if (enumValue == 0) continue;
+                }
+
+
+                keys.Add(prop.Name);
+            }
+
+            return new UpdateOptions(keys);
         }
     }
 }

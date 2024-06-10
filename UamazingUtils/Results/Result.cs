@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 
-namespace Uamazing.Utils.Validate
+namespace Uamazing.Utils.Results
 {
     /// <summary>
     /// 返回的结果值
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Result<T> : ResultFlag
+    public class Result<T> : ResultBase
     {
         /// <summary>
         /// 默认为 true
@@ -22,7 +22,7 @@ namespace Uamazing.Utils.Validate
         /// <param name="ok"></param>
         public Result(bool ok)
         {
-            Ok=ok;
+            Ok = ok;
         }
 
         /// <summary>
@@ -30,10 +30,10 @@ namespace Uamazing.Utils.Validate
         /// </summary>
         /// <param name="ok"></param>
         /// <param name="message"></param>
-        public Result(bool ok,string message)
+        public Result(bool ok, string message)
         {
-            Ok=ok;
-            Message=message;
+            Ok = ok;
+            Message = message;
         }
 
         /// <summary>
@@ -41,12 +41,12 @@ namespace Uamazing.Utils.Validate
         /// </summary>
         /// <param name="ok"></param>
         /// <param name="data"></param>
-        /// <param name="error"></param>
-        public Result(bool ok, string error, T data)
+        /// <param name="message"></param>
+        public Result(bool ok, string message, T data)
         {
             Data = data;
             Ok = ok;
-            Message = error;
+            Message = message;
         }
 
         /// <summary>
@@ -83,6 +83,29 @@ namespace Uamazing.Utils.Validate
         {
             Ok = !Ok;
             return this;
+        }
+
+        /// <summary>
+        /// 返回一个成功的结果
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static Result<T> Success(T data, string message = "success")
+        {
+            return new Result<T>(true, message, data);
+        }
+
+        /// <summary>
+        /// 返回一个失败的结果
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static Result<T> Fail(string message, T data = default)
+        {
+            return new Result<T>(false, message, data);
         }
     }
 }

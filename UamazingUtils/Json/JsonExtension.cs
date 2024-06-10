@@ -16,7 +16,7 @@ namespace Uamazing.Utils.Json
         /// <param name="jt"></param>
         /// <param name="default_"></param>
         /// <returns></returns>
-        public static T ValueOrDefault<T>(this JToken jt, T default_)
+        public static T ToObjectOrDefault<T>(this JToken jt, T default_)
         {
             if (jt == null) return default_;
 
@@ -37,8 +37,9 @@ namespace Uamazing.Utils.Json
         public static T SelectTokenOrDefault<T>( this JToken jt, string path, T default_)
         {
             if (string.IsNullOrEmpty(path)) return default_;
+            if(jt == null) return default_;
 
-            return jt.SelectToken(path).ValueOrDefault(default_);
+            return jt.SelectToken(path).ToObjectOrDefault(default_);
         }
     }
 }

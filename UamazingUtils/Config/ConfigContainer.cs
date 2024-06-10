@@ -27,7 +27,7 @@ namespace Uamazing.Utils.Config
         {
             get
             {
-                if (_instance == null) _instance = new ConfigContainer();
+                _instance ??= new ConfigContainer();
                 return _instance;
             }
         }

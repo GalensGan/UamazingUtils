@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static Uamazing.Utils.Extensions.NameStyles;
+using static Uamazing.Utils.Extensions.NameStylesExtension;
 
 namespace Uamazing.Utils.Json
 {

@@ -1,4 +1,5 @@
-﻿using Uamazing.Utils.Validate;
+﻿using System.Net;
+using Uamazing.Utils.Results;
 
 namespace Uamazing.Utils.Web.ResponseModel
 {
@@ -11,6 +12,9 @@ namespace Uamazing.Utils.Web.ResponseModel
         /// 错误代码，前端可以根据这些代码作不同的操作
         /// 不认成功或失败，只要没有特殊需求，它都为200
         /// </summary>
-        public ResponseCode Code { get; set; } = ResponseCode.Ok;
+        public int Code { get; set; } = (int)HttpStatusCode.OK;
+
+        public static ResponseResult<T> Success(T data) => new ResponseResult<T>() { Ok = false, Message = "ok", Data = data };
+        public static ResponseResult<T> Fail(string message) => new ResponseResult<T>() { Ok = false, Message = message };
     }
 }

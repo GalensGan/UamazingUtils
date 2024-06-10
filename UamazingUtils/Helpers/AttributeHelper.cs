@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uamazing.Utils.AttributeHelpers
+namespace Uamazing.Utils.Helpers
 {
     /// <summary>
     /// Attribute 的扩展

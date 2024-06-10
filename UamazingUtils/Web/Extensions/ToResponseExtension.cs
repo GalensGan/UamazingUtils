@@ -15,7 +15,7 @@ namespace Uamazing.Utils.Web.Extensions
         /// <returns></returns>
         public static ResponseResult<T> ToSuccessResponse<T>(this T data)
         {
-            return new SuccessResponse<T>(data);        
+            return new SuccessResponse<T>(data);
         }
 
         /// <summary>
@@ -25,9 +25,25 @@ namespace Uamazing.Utils.Web.Extensions
         /// <param name="data"></param>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public static ResponseResult<T> ToErrorResponse<T>(this T data,string errorMessage)
+        public static ResponseResult<T> ToErrorResponse<T>(this T data, string errorMessage)
         {
-            return new ErrorResponse<T>(errorMessage,data);
+            return new ErrorResponse<T>(errorMessage, data);
+        }
+
+        /// <summary>
+        /// 根据数据是否为空，封装成请求成功或失败的返回值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
+        public static ResponseResult<T> ToSmartResponse<T>(this T data, string errorMessage = "数据不存在")
+        {
+            if (data == null)
+            {
+                return new ErrorResponse<T>(errorMessage, data);
+            }
+            return new SuccessResponse<T>(data);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Uamazing.Utils.Web.ResponseModel;
-using Uamazing.Utils.Validate;
+using Uamazing.Utils.Results;
 
 namespace Uamazing.Utils.Factory
 {

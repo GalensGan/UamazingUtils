@@ -11,7 +11,7 @@ namespace Uamazing.Utils.Extensions
     /// <summary>
     /// 命名转换
     /// </summary>
-    public static class NameStyles
+    public static class NameStylesExtension
     {
         /// <summary>
         /// 命名样式

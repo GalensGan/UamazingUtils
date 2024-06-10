@@ -1,6 +1,6 @@
-﻿using Uamazing.Utils.Validate;
+﻿using Uamazing.Utils.Results;
 
-namespace Uamazing.Utils.Validate
+namespace Uamazing.Utils.Results
 {
     public class SuccessResult<T> : Result<T>
     {

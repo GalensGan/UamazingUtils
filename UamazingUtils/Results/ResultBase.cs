@@ -1,9 +1,9 @@
-﻿namespace Uamazing.Utils.Validate
+﻿namespace Uamazing.Utils.Results
 {
     /// <summary>
-    /// 结果标记
+    /// 结果基类
     /// </summary>
-    public abstract class ResultFlag
+    public abstract class ResultBase
     {
         /// <summary>
         /// 是否验证通过
@@ -34,13 +34,13 @@
         /// ResultFlag 转换成 bool
         /// </summary>
         /// <param name="resultFlag"></param>
-        public static implicit operator bool(ResultFlag resultFlag) => resultFlag.Ok;
+        public static implicit operator bool(ResultBase resultFlag) => resultFlag.Ok;
 
         /// <summary>
         /// bool 转换成 ResultFlag
         /// </summary>
         /// <param name="value"></param>
-        public static explicit operator ResultFlag(bool value)
+        public static explicit operator ResultBase(bool value)
         {
             return new Result<object>(value, string.Empty, string.Empty);
         }
